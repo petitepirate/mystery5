@@ -17,10 +17,14 @@ def homepage():
 
 @app.route("/api/get-lucky-num", methods=["POST"])
 def get_lucky_num():
+    """takes data from form, makes api call, returns lucky number information.
+    Returns JSON {'num': {fact, num} 'year': {fact, year}}
+    """
     data = request.get_json()
     form = InfoForm(MultiDict(mapping=data['data']), csrf_enabled=False)
+    print(form)
+    
     if form.validate():
-        print(form.data)
         num = randint(0,100)
         resp = {
             "num": {
