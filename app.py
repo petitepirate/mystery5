@@ -22,6 +22,7 @@ def get_lucky_num():
     """
     data = request.get_json()
     form = InfoForm(MultiDict(mapping=data['data']), csrf_enabled=False)
+    #essentially make a fake form that the JSON data gets assigned to and is then validated.  Disable CSRF so the "form" goes through validation
     print(form)
     
     if form.validate():
